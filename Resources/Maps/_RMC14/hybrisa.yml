@@ -149223,7 +149223,7 @@ entities:
     - type: Transform
       pos: -128.5,-23.5
       parent: 1
-- proto: OxygenCanister
+- proto: RMCCanisterBlue
   entities:
   - uid: 13116
     components:
@@ -150009,7 +150009,7 @@ entities:
     - type: Physics
       canCollide: False
     - type: InsideEntityStorage
-- proto: RMCAttachmentLaserLightModule
+- proto: RMCAttachmentLaserSight
   entities:
   - uid: 13252
     components:
@@ -328211,7 +328211,7 @@ entities:
     - type: Transform
       pos: -50.35855,-126.25476
       parent: 1
-- proto: Shovel
+- proto: RMCShovel
   entities:
   - uid: 4342
     components:

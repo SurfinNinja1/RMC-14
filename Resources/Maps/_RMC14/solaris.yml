@@ -210184,7 +210184,7 @@ entities:
     - type: Transform
       pos: 101.5,-80.5
       parent: 1
-- proto: Shovel
+- proto: RMCShovel
   entities:
   - uid: 39499
     components:
