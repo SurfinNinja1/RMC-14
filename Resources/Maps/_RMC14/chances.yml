@@ -85620,13 +85620,6 @@ entities:
       rot: 1.5707963267948966 rad
       pos: 82.5,45.5
       parent: 1
-- proto: OxygenCanister
-  entities:
-  - uid: 23153
-    components:
-    - type: Transform
-      pos: 45.5,-14.5
-      parent: 1
 - proto: PaperScrap
   entities:
   - uid: 22261
@@ -89114,6 +89107,11 @@ entities:
     components:
     - type: Transform
       pos: 2.8,-70
+      parent: 1
+  - uid: 23153
+    components:
+    - type: Transform
+      pos: 45.5,-14.5
       parent: 1
 - proto: RMCCanisterOrange
   entities:
@@ -183110,7 +183108,7 @@ entities:
     - type: Transform
       pos: -25.5,-53.5
       parent: 1
-- proto: Shovel
+- proto: RMCShovel
   entities:
   - uid: 25244
     components:
