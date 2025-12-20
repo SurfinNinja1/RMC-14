@@ -2,6 +2,7 @@
 using System.Linq;
 using System.Runtime.InteropServices;
 using Content.Shared._RMC14.Chemistry.Reagent;
+using Content.Shared._RMC14.Xenonids;
 using Content.Shared.Chemistry.Components.SolutionManager;
 using Content.Shared.Chemistry.EntitySystems;
 using Content.Shared.Chemistry.Reagent;
@@ -55,6 +56,7 @@ public sealed class SkillsSystem : EntitySystem
         SubscribeLocalEvent<PrototypesReloadedEventArgs>(OnPrototypesReloaded);
         SubscribeLocalEvent<GetMeleeDamageEvent>(OnGetMeleeDamage);
 
+        SubscribeLocalEvent<SkillsComponent, MapInitEvent>(OnSkillsMapInit);
         SubscribeLocalEvent<SkillsComponent, GetVerbsEvent<ExamineVerb>>(OnSkillsVerbExamine);
 
         SubscribeLocalEvent<MedicallyUnskilledDoAfterComponent, AttemptHyposprayUseEvent>(OnAttemptHyposprayUse);
@@ -95,9 +97,20 @@ public sealed class SkillsSystem : EntitySystem
         args.Damage = ApplyMeleeSkillModifier(args.User, args.Damage);
     }
 
+    private void OnSkillsMapInit(Entity<SkillsComponent> ent, ref MapInitEvent args)
+    {
+        if (!_prototypes.TryIndex(ent.Comp.Preset, out var skillPreset))
+            return;
+
+        ent.Comp.Skills = skillPreset.Skills;
+        Dirty(ent);
+    }
+
     private void OnSkillsVerbExamine(Entity<SkillsComponent> ent, ref GetVerbsEvent<ExamineVerb> args)
     {
-        if (!args.CanInteract || !args.CanAccess)
+        var user = args.User;
+
+        if (!args.CanInteract || !args.CanAccess || HasComp<XenoComponent>(user))
             return;
 
         _skillsSorted.Clear();
